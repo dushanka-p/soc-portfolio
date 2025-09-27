@@ -13,6 +13,17 @@ Tools used: **Azure VMs, Microsoft Defender, Microsoft Sentinel, GitHub**.
 
 ---
 
+## 📂 Repository Structure (Wireframe)
+
+```
+soc-portfolio/                <- umbrella (index repo)
+├─ simulations/               <- all benign SOC simulations
+│  └─ soc-phish-sim/          <- phishing → stager → beacon → mock exfil (Azure VM + Defender + Sentinel)
+│
+└─ honeypot-investigations/   <- honeypot logs, IoC extraction, triage + investigation reports
+```
+---
+
 ## 🔒 Visibility & where to find artifacts
 - **Public:** playbooks, detection rules, sanitized evidence, demo videos.  
 - **Private:** raw PCAPs, full memory dumps, unredacted logs, tenant secrets (stored in private repos or private folder).  
