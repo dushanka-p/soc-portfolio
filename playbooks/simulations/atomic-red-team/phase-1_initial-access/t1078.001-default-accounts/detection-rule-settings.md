@@ -8,7 +8,7 @@
 | **Rule Type** | Scheduled |
 | **Query Frequency** | 5 minutes |
 | **Query Lookback** | 15 minutes |
-| **Entity Mapping** | Host → DeviceName<br>Account → AccountUpn<br>Process → ProcessCommandLine |
+| **Entity Mapping** | Host → HostName → WorkstationName<br>Account → Name → AccountUpn<br>Process → CommandLine → ProcessCommandLine |
 | **Suppression Period** | 1 hour |
 | **Playbook / Response** | Manual isolation & user investigation |
 | **Version** | v1.0 |
