@@ -8,7 +8,7 @@
 // ===============================================
 
 DeviceProcessEvents
-| where DeviceName  == "dp--art--dp"
+| where DeviceName  == "dp--art-sim--dp"
 | where TimeGenerated > ago(15m)
 | where InitiatingProcessFileName has_any ("cmd.exe", "powershell.exe", "net.exe")
 | where ProcessCommandLine has_any ("net user", "net localgroup", "Administrators", "Remote Desktop Users")
