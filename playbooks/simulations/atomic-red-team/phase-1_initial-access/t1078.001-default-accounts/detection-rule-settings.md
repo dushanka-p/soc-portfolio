@@ -9,7 +9,7 @@
 | **Query Frequency** | 5 minutes |
 | **Query Lookback** | 15 minutes |
 | **Entity Mapping** | Host → HostName → WorkstationName<br>Account → Name → AccountUpn<br>Process → CommandLine → ProcessCommandLine |
-| **Suppression Period** | 1 hour |
+| **Suppression Period** | 24 hours |
 | **Playbook / Response** | Manual isolation & user investigation |
 | **Version** | v1.0 |
 | **Last Updated** | 2025-10-10 |
