@@ -1,111 +1,78 @@
+## ✅ Add Atomic Red Team to Microsoft Defender Exclusion List
 
-# Atomic Red Team — One-time setup & per-session tips
+1. Open PowerShell (as Administrator).
+2. Create the Atomic folder:
 
-> **⚠️ Safety:** Run these steps **only** in isolated lab VMs. Do NOT run on production or internet-exposed systems.
+   ```powershell
+   New-Item -Path "C:\AtomicRedTeam" -ItemType Directory -Force
+   ```
+3. Add the folder to Defender exclusions:
 
----
+   ```powershell
+   Add-MpPreference -ExclusionPath "C:\AtomicRedTeam"
+   ```
+4. Confirm the folder is excluded:
 
-## 🧩 One-Time Setup (Run once per machine)
-
-**1. Install the module** (internet access required)
-```powershell
-# Only run if you trust PSGallery and the machine is isolated
-Install-Module -Name Invoke-AtomicRedTeam -Scope CurrentUser -Repository PSGallery -Force
-````
-
-**Offline alternative:** Download the module on a safe machine and copy the module folder to:
-`$env:USERPROFILE\Documents\WindowsPowerShell\Modules\Invoke-AtomicRedTeam\<version>\`
-
-**2. Allow PowerShell scripts to run (current user)**
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
-```
-
-**3. Create a folder for single-test outputs (idempotent)**
-
-```powershell
-$installPath = 'C:\AtomicRedTeam\SingleTests'
-New-Item -Path $installPath -ItemType Directory -Force | Out-Null
-```
-
-**4. Verify module installation**
-
-```powershell
-Get-Module -ListAvailable -Name Invoke-AtomicRedTeam | Select-Object Name,Version,Path
-```
+   ```powershell
+   (Get-MpPreference).ExclusionPath
+   ```
 
 ---
 
-## 💻 Per-session commands (run each time you open PowerShell)
+## 📥 Download & Install Invoke-AtomicRedTeam
 
-**1. Check if module is loaded**
+1. Reference install guide:
+   [https://github.com/redcanaryco/invoke-atomicredteam/wiki/Installing-Invoke-AtomicRedTeam](https://github.com/redcanaryco/invoke-atomicredteam/wiki/Installing-Invoke-AtomicRedTeam)
 
-```powershell
-Get-Module -Name Invoke-AtomicRedTeam
-```
+2. Run the following in PowerShell to install the module and download all atomic tests:
 
-**2. If nothing returns, import the module**
+   ```powershell
+   IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
+   Install-AtomicRedTeam -getAtomics
+   ```
 
-```powershell
-Import-Module Invoke-AtomicRedTeam
-```
+3. Import the module (must be run in every new session before using the framework):
 
-**3. Confirm available commands**
-
-```powershell
-Get-Command -Module Invoke-AtomicRedTeam | Select-Object Name
-```
-
-**4. (Optional) View detailed help**
-
-```powershell
-Get-Help <CommandName> -Full
-```
+   ```powershell
+   Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
+   ```
 
 ---
 
-## ⚙️ Example: Run a single Atomic test (manual trigger)
+## 📋 View Test Descriptions (Brief of Each Test)
 
-```powershell
-# Example: find commands and run one test manually
-Get-Command -Module Invoke-AtomicRedTeam
-Invoke-AtomicTest -AtomicTestName 'T1059.001' -Path $installPath -ShowDetails
-```
+* To view all available tests for a technique along with their names and descriptions:
 
-> **Note:** run tests **manually**, one at a time. Do not automate bulk test runs.
+  ```powershell
+  Get-AtomicTechnique -Technique T1078.001 | Select-Object -ExpandProperty AtomicTests | Select-Object Name, Description
+  ```
 
----
+* Alternatively, to view test details including test numbers:
 
-## 🔁 Optional: Auto-import on PowerShell startup (COMMENTED — opt-in only)
-
-> Recommended: keep this **commented**. Only enable if you deliberately want module auto-install on lab VMs.
-
-```powershell
-# # Auto-load Atomic Red Team module at startup (OPTIONAL - uncomment to enable)
-# if (-not (Get-Module -ListAvailable -Name Invoke-AtomicRedTeam)) {
-#     try {
-#         Install-Module -Name Invoke-AtomicRedTeam -Scope CurrentUser -Force -ErrorAction SilentlyContinue
-#     } catch {}
-# }
-# if (-not (Get-Module -Name Invoke-AtomicRedTeam)) {
-#     Import-Module Invoke-AtomicRedTeam -ErrorAction SilentlyContinue
-# }
-```
+  ```powershell
+  Get-AtomicTechnique -Technique T1078.001
+  ```
 
 ---
 
-## 🧠 Safety reminders
+## 🧪 Check Prerequisites Before Running Tests
 
-* ✅ Run only inside your isolated Cyber Range VM (snapshot revert point).
-* 🔍 Use `Get-Module -ListAvailable` to confirm installation path/version.
-* 🧰 Run Atomic tests **manually**, one-by-one (your current workflow).
-* 🧼 The folder creation command is idempotent — safe to rerun.
-* 🔐 Consider verifying module checksum/signature or using an offline module copy.
+1. To check prerequisites for the full technique:
+
+   ```powershell
+   Invoke-AtomicTest T1078.001 -CheckPrereqs
+   ```
+
+2. To check prerequisites for a specific test number (example: Test 1):
+
+   ```powershell
+   Invoke-AtomicTest T1078.001 -TestNumbers 1 -CheckPrereqs
+   ```
+
+3. To **automatically install** required dependencies, use `-GetPrereqs`:
+
+   ```powershell
+   Invoke-AtomicTest T1078.001 -TestNumbers 1 -CheckPrereqs -GetPrereqs
+   ```
 
 ---
-
-```
-
-::contentReference[oaicite:0]{index=0}
-```
