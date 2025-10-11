@@ -3,19 +3,27 @@
 **MITRE ATT&CK Mapping:**  
 - **Tactic:** Initial Access  
 - **Technique:** T1078.001 — Valid Accounts: Default Accounts  
-- **Link:** [MITRE ATT&CK T1078.001](https://attack.mitre.org/techniques/T1078/001/)
+- **Link:** <a href="https://attack.mitre.org/techniques/T1078/001/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK T1078.001 ↗️</a>
+
+---
 
 ## 🧪 Atomic Red Team Simulation by Me
 
-This test is part of my personal SOC detection engineering and investigation workflow.
+This test is part of my personal SOC detection engineering and investigation workflow.  
 I’m manually simulating a **default account abuse scenario** on an **Azure VM**, writing the detection logic in **Microsoft Sentinel**, and confirming end-to-end incident response capability.
 
-> **Safety Notice:**
+&nbsp;
+
+> **Safety Notice:**  
 > All testing and simulation is performed strictly within a controlled lab environment (Azure VM in a Cyber Range) that I fully manage. **Never run these techniques on production systems.**
+
+&nbsp;
 
 ## 📑 Quick Links
 
 * [SOC Investigation Log & Timeline](./soc-investigation-log.md)
+
+&nbsp;
 
 ## 🎯 Objective
 
@@ -36,7 +44,7 @@ I’m manually simulating a **default account abuse scenario** on an **Azure VM*
 | **Azure Virtual Machine**           | Victim host for test (Windows OS)                   |
 | **PowerShell / CMD**                | Manual execution of Atomic test                     |
 | **Event Viewer**                    | Local log validation                                |
-| **KQL (Kusto Query Language)**      | Custom query logic for Sentinel analytics rules     |
+| **KQL (Kusto Query Language)**      | Custom query logic for Sentinel analytics rules      |
 
 > 🧪 The test is run **manually** in a Cyber Range VM I fully control.
 
@@ -46,12 +54,11 @@ I’m manually simulating a **default account abuse scenario** on an **Azure VM*
 
 ### ✅ Test 1 — Enable Guest + RDP + Admin
 
-* **Technique:** T1078.001
-* **Platform:** Windows
+* **Technique:** T1078.001  
+* **Platform:** Windows  
 * **Atomic GUID:** `99747561-ed8d-47f2-9c91-1e5fde1ed6e0`
 
 #### Manual Execution:
-
 ```cmd
 net user guest /active:yes
 net user guest Password123!
@@ -59,7 +66,7 @@ net localgroup Administrators guest /add
 net localgroup "Remote Desktop Users" guest /add
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 1 /f
-```
+````
 
 ---
 
@@ -100,7 +107,7 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSCon
 
 ## 🕵️ SOC Investigation Log
 
-[Jump to Detailed Log & Timeline](#detailed-investigation-log--timeline)
+[Jump to Detailed Log & Timeline](./soc-investigation-log.md)
 
 * Review entities: host, user, account, IP
 * Check `SecurityEvent` logs in Sentinel
@@ -134,14 +141,20 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSCon
 
 ## 📚 References
 
-* [MITRE ATT&CK - T1078.001](https://attack.mitre.org/techniques/T1078/001/)
-* [Atomic Red Team - GitHub](https://github.com/redcanaryco/atomic-red-team)
-* Microsoft Sentinel & Defender Documentation
+* <a href="https://attack.mitre.org/techniques/T1078/001/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK - T1078.001 ↗️</a>
+* <a href="https://github.com/redcanaryco/atomic-red-team" target="_blank" rel="noopener noreferrer">Atomic Red Team - GitHub ↗️</a>
+* <a href="https://learn.microsoft.com/en-us/azure/sentinel/" target="_blank" rel="noopener noreferrer">Microsoft Sentinel Documentation ↗️</a>
+* <a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/" target="_blank" rel="noopener noreferrer">Microsoft Defender for Endpoint Documentation ↗️</a>
 
 ---
 
-## Detailed Investigation Log & Timeline
+## 📓 Detailed Investigation Log & Timeline
 
-> *See [investigation.md](./soc-investigation-log.md) in this folder for the full analyst log, timeline, artifacts, screenshots, and triage details for this test.*
+> *See [soc-investigation-log.md](./soc-investigation-log.md) in this folder for the full analyst log, timeline, artifacts, screenshots, and triage details for this test.*
 
 ---
+
+```
+
+Let me know if you need this for any other documentation or want a boilerplate template!
+```
