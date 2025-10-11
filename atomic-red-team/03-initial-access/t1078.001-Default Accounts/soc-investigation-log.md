@@ -164,16 +164,14 @@
 
 ---
 
-[Download exported logs](./artifacts/exported-logs.csv)
-
+> **Note:** Exported logs are not included for privacy reasons.
 
 ---
 
 ## ✅ Outcome
 
 ✅ Incident successfully simulated and detected.  
-🛠️ Detection logic verified.  
-🕵️ Investigation completed.
-
-
+🛠️ Detection logic worked as expected—alert triggered on intended actions.  
+🕵️ Investigation completed with all steps and evidence documented.  
+🔒 No further suspicious activity or lateral movement observed after test.
 ---
