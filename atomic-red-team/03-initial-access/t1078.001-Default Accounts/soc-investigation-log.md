@@ -94,14 +94,13 @@
 
 ## 📸 Screenshots / Evidence
 
-## 📸 Screenshots / Evidence
+![Sentinel alert](./artifacts/screenshots/sentinel-alert.png)
+![Guest enabled](./artifacts/screenshots/guest-enabled.png)
+![Group membership change](./artifacts/screenshots/group-add.png)
+![Registry change](./artifacts/screenshots/rdp-registry.png)
 
-![Guest enabled via net user](./evidence/guest-enabled.png)
-![Guest added to admin group](./evidence/guest-admin-group.png)
-![Registry change to enable RDP](./evidence/rdp-registry.png)
-![Sentinel alert screenshot](./evidence/sentinel-alert.png)
+[Download exported logs](./artifacts/exported-logs.csv)
 
-[Download exported logs](./evidence/exported-logs.csv)
 
 
 ---
