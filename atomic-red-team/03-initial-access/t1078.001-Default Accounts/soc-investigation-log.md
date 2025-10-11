@@ -1,7 +1,7 @@
 
 # 🕵️ SOC Investigation Log  
 **Technique:** T1078.001 - Valid Accounts: Default Accounts  
-**Test Folder:** `TXXXX.XXX-[short-name]/`  
+**Test Folder:** atomic-red-team/03-initial-access/t1078.001-Default Accounts/  
 **Date of Test:** 2025-10-11  
 **Analyst:** Dushanka P.
 
