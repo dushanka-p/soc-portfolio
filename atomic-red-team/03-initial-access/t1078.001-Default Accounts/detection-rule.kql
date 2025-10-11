@@ -1,1 +1,19 @@
-//detection-rule
+// ------------------------------------------------------------------
+//
+// Detects recent local account and admin group changes on the victim VM.
+// - Finds process events where user/group changes were made with net or cmd tools.
+// - Also includes SecurityEvent logs for users added to the Administrators group.
+//
+// ------------------------------------------------------------------
+
+DeviceProcessEvents
+| where DeviceName  == "dp--art-sim--dp"
+| where TimeGenerated > ago(15m)
+| where InitiatingProcessFileName has_any ("cmd.exe", "powershell.exe", "net.exe")
+| where ProcessCommandLine has_any ("net user", "net localgroup", "Administrators", "Remote Desktop Users")
+| project TimeGenerated, AccountUpn, ProcessCommandLine, InitiatingProcessFileName
+| union (
+    SecurityEvent
+    | where EventID == 4732
+    | where TargetUserName == "Administrators"
+)
