@@ -10,8 +10,6 @@
 This test is part of my personal SOC detection engineering and investigation workflow.
 I’m manually simulating a **default account abuse scenario** on an **Azure VM**, writing the detection logic in **Microsoft Sentinel**, and confirming end-to-end incident response capability.
 
----
-
 > **Safety Notice:**
 > All testing and simulation is performed strictly within a controlled lab environment (Azure VM in a Cyber Range) that I fully manage. **Never run these techniques on production systems.**
 
