@@ -1,7 +1,6 @@
 
 # 🕵️ SOC Investigation Log  
 
-
 **MITRE ATT&CK Mapping:**  
 - **Tactic:** Initial Access  
 - **Technique:** T1078.001 – Valid Accounts: Default Accounts  
