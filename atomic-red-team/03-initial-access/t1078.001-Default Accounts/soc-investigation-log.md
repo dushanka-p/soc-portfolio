@@ -1,6 +1,14 @@
 
 # 🕵️ SOC Investigation Log  
-**Technique:** T1078.001 - Valid Accounts: Default Accounts  
+
+
+**MITRE ATT&CK Mapping:**  
+- **Tactic:** Initial Access  
+- **Technique:** T1078.001 – Valid Accounts: Default Accounts  
+- **Link:** [MITRE ATT&CK T1078.001](https://attack.mitre.org/techniques/T1078/001/)
+
+---
+
 **Test Folder:** atomic-red-team/03-initial-access/t1078.001-Default Accounts/  
 **Date of Test:** 2025-10-11  
 **Analyst:** Dushanka P.
