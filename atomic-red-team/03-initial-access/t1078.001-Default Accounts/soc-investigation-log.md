@@ -1,57 +1,76 @@
 
 # 🕵️ SOC Investigation Log  
-**Technique:** [TXXXX.XXX — Technique Name]  
+**Technique:** T1078.001 - Valid Accounts: Default Accounts  
 **Test Folder:** `TXXXX.XXX-[short-name]/`  
-**Date of Test:** [YYYY-MM-DD]  
-**Analyst:** [Your Name or Alias]
+**Date of Test:** 2025-10-11  
+**Analyst:** Dushanka P.
 
 ---
 
 ## 🎯 Incident Summary
 
-| Field                 | Value                                |
-|----------------------|--------------------------------------|
-| Alert Name           | [Name of Sentinel alert]             |
-| MITRE ID             | [TXXXX.XXX]                          |
-| Alert Source         | Microsoft Sentinel                   |
-| Detection Rule Type  | [Scheduled / Custom]                 |
-| Triggered By         | [e.g., Event ID, Registry, Process]  |
-| Alert Severity       | [High / Medium / Low]                |
-| Affected Host        | [VM Hostname or IP]                  |
-| Username / Account   | [guest / attacker_sim / etc.]        |
+| Field               | Value                                            |
+| ------------------- | ------------------------------------------------ |
+| Alert Name          | DP_IR_Default_Accounts_Creation                  |
+| MITRE ID            | T1078.001                                        |
+| Alert Source        | Microsoft Sentinel                               |
+| Detection Rule Type | Scheduled / Custom                               |
+| Triggered By        | `cmd.exe` commands: `net user`, `net localgroup` |
+| Alert Severity      | High                                             |
+| Affected Host       | dp--art-sim--dp                                  |
+| Username / Account  | guest                                            |
+
 
 ---
 
 ## 🧠 Triage Questions
 
-- Was the behavior expected in this lab?
-- Which artifacts prove the technique worked?
-- Did it cause any follow-up processes or network activity?
-- Was the user elevated or used for RDP?
-- Any lateral movement or signs of privilege escalation?
+
+* **Was the behavior expected in this lab?**
+  Yes, this was a controlled simulation.
+
+* **Which artifacts prove the technique worked?**
+
+  * Successful `net user` and `net1.exe` commands
+  * Group membership changes (Administrators, Remote Desktop Users)
+  * Registry modifications to enable RDP
+
+* **Did it cause any follow-up processes or network activity?**
+  No evidence of external network connections or suspicious follow-up processes in the immediate aftermath. No RDP logins detected—just setup actions.
+
+* **Was the user elevated or used for RDP?**
+  Yes. The `guest` account was enabled, had its password set, added to Administrators and Remote Desktop Users groups, and RDP was enabled via registry change.
+
+* **Any lateral movement or signs of privilege escalation?**
+  No lateral movement observed. Privilege escalation occurred (guest added to privileged groups), but no attempts to move to other hosts detected.
 
 ---
 
 ## 📂 Timeline (Key Events)
 
-| Time (UTC)     | Event Description                                  |
-|----------------|----------------------------------------------------|
-| [e.g., 10:05]  | Guest account enabled via `net user`               |
-| [e.g., 10:06]  | Guest added to Administrators group                |
-| [e.g., 10:07]  | Registry modified to enable RDP                    |
-| [e.g., 10:08]  | Sentinel alert triggered                           |
+| Time (VM Local) | Time (Sentinel/UTC) | Event Description                                                                |
+| --------------- | ------------------- | -------------------------------------------------------------------------------- |
+| 18:41:40        | 19:41:40            | Recon: `whoami.exe` and `hostname.exe` run to check context                      |
+| 18:41:42        | 19:41:42            | `cmd.exe` runs multiple commands: enables guest, adds to Admin/RDP, enables RDP  |
+| 18:41:43        | 19:41:43            | `net1.exe`/`net.exe` add guest to Administrators and Remote Desktop Users groups |
+| 18:41:43        | 19:41:43            | `reg.exe` modifies Terminal Server registry to allow RDP                         |
+| 18:41:43        | 19:41:43            | Guest password set (`net1.exe user guest Password123!`)                          |
+| 18:41:43        | 19:41:43            | Verification: `whoami.exe`, `hostname.exe` (context after changes)               |
+| 18:41:41+       | 19:41:41+           | **Sentinel alert triggered (DP_IR_Default_Accounts_Creation)**                   |
+
+
 
 ---
 
 ## 🔍 Artifacts Observed
 
-| Artifact Type         | Evidence Found                              |
-|-----------------------|---------------------------------------------|
-| Security Events       | [4722, 4732]                                 |
-| Command Line          | `net user`, `net localgroup`, `reg add`     |
-| Registry Keys         | `HKLM\SYSTEM\...\fDenyTSConnections`         |
-| Defender Logs         | [Any related MDE telemetry]                 |
-| Network Logs (optional) | [RDP/3389 connection attempt]             |
+| Artifact Type           | Evidence Found                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------- |
+| Security Events         | 4722 (user enabled), 4732 (added to group)                                            |
+| Command Line            | `net user`, `net1.exe`, `net localgroup`, `reg add`                                   |
+| Registry Keys           | `HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\fDenyTSConnections` (set to 0) |
+| Defender Logs           | Alert triggered by Sentinel: `DP_IR_Default_Accounts_Creation`                        |
+| Network Logs (optional) | No RDP (3389) login attempts observed in this window                                  |
 
 ---
 
@@ -75,8 +94,15 @@
 
 ## 📸 Screenshots / Evidence
 
-- ![Screenshot](../sentinel-alert-screenshot.png)
-- [Attach exported logs, if available]
+## 📸 Screenshots / Evidence
+
+![Guest enabled via net user](./evidence/guest-enabled.png)
+![Guest added to admin group](./evidence/guest-admin-group.png)
+![Registry change to enable RDP](./evidence/rdp-registry.png)
+![Sentinel alert screenshot](./evidence/sentinel-alert.png)
+
+[Download exported logs](./evidence/exported-logs.csv)
+
 
 ---
 
