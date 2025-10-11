@@ -22,8 +22,6 @@ I’m manually simulating a **default account abuse scenario** on an **Azure VM*
 
 * [SOC Investigation Log & Timeline](./soc-investigation-log.md)
 
-&nbsp;
-
 ## 🎯 Objective
 
 * Simulate abuse of the default `Guest` account to gain local admin + RDP access.
