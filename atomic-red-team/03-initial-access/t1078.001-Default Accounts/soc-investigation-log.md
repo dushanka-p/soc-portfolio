@@ -85,10 +85,24 @@
 
 ## 🧪 Notes & Improvements
 
-- [Detection rule improvements or logic tuning ideas]
-- [EDR/Defender coverage observations]
-- [Any false positive considerations]
-- [Follow-up test ideas or chaining concepts]
+- **Detection rule improvements or logic tuning ideas**
+  - Add checks for both `net.exe` and `net1.exe`—attackers use both.
+  - Rule should alert on registry changes for RDP keys, not just group changes.
+  - Watch for duplicate alerts if commands are chained together.
+
+- **EDR/Defender coverage observations**
+  - Sentinel caught the test, worked as expected.
+  - Didn’t see any Defender alerts for these actions—need to check Defender settings and logs.
+  - Would be better if Defender also alerted on suspicious registry and group changes.
+
+- **Any false positive considerations**
+  - Might get false positives if legit admins use these commands for normal tasks.
+  - Some RDP registry changes are done during server setup—need to check if account/group changes happen at the same time.
+
+- **Follow-up test ideas or chaining concepts**
+  - Next, try actually logging in via RDP as guest and see if it gets detected.
+  - After guest is enabled, try moving to another VM—test for lateral movement.
+  - Could chain with persistence or exfil tests to see if stack catches everything.
 
 ---
 
