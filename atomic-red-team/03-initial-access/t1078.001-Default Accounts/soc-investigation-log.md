@@ -103,18 +103,25 @@
 ![Guest enabled via net1.exe](./artifacts/screenshots/net1-enable-guest.png)
 *Process event: `net1.exe` enables guest account (initiated by `net.exe`).*
 
-![Guest added to Administrators group](./artifacts/screenshots/group-add-admin.png)
-*Guest account added to Administrators group via `net localgroup`.*
+![Guest added to Administrators group via net.exe](./artifacts/screenshots/group-add-admin-net.png)
+*Guest account added to Administrators group via `net.exe` (initiated by `cmd.exe`).*
 
-![Guest added to Remote Desktop Users group](./artifacts/screenshots/group-add-rdp.png)
-*Guest account added to Remote Desktop Users group via `net localgroup`.*
+![Guest added to Administrators group via net1.exe](./artifacts/screenshots/group-add-admin-net1.png)
+*Guest account added to Administrators group via `net1.exe` (initiated by `net.exe`).*
 
-![Registry change to enable RDP](./artifacts/screenshots/rdp-registry.png)
-*Registry key modified to enable RDP (`fDenyTSConnections` set to 0).*
+![Guest added to Remote Desktop Users group via net.exe](./artifacts/screenshots/group-add-rdp-net.png)
+*Guest account added to Remote Desktop Users group via `net.exe`.*
+
+![Guest added to Remote Desktop Users group via net1.exe](./artifacts/screenshots/group-add-rdp-net1.png)
+*Guest account added to Remote Desktop Users group via `net1.exe`.*
+
+![Registry change: AllowTSConnections](./artifacts/screenshots/rdp-registry-allowts.png)
+*Registry key `AllowTSConnections` set to `1` to enable RDP.*
+
+![Registry change: fDenyTSConnections](./artifacts/screenshots/rdp-registry-fdenyts.png)
+*Registry key `fDenyTSConnections` set to `0` to enable RDP.*
 
 [Download exported logs](./artifacts/exported-logs.csv)
-
-
 
 
 ---
