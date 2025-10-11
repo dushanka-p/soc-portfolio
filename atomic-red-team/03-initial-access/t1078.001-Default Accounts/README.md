@@ -13,8 +13,6 @@ I’m manually simulating a **default account abuse scenario** on an **Azure VM*
 > **Safety Notice:**
 > All testing and simulation is performed strictly within a controlled lab environment (Azure VM in a Cyber Range) that I fully manage. **Never run these techniques on production systems.**
 
----
-
 ## 📑 Quick Links
 
 * [SOC Investigation Log & Timeline](./soc-investigation-log.md)
