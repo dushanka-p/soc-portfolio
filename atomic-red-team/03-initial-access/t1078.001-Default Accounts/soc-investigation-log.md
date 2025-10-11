@@ -170,8 +170,9 @@
 
 ## ✅ Outcome
 
-✅ Incident successfully simulated and detected.  
-🛠️ Detection logic worked as expected—alert triggered on intended actions.  
-🕵️ Investigation completed with all steps and evidence documented.  
-🔒 No further suspicious activity or lateral movement observed after test.
+- Incident successfully simulated and detected.
+- Detection logic worked as expected—alert triggered on intended actions.
+- Investigation completed with all steps and evidence documented.
+- No further suspicious activity or lateral movement observed after test.
+
 ---
