@@ -1,1 +1,129 @@
 
+# T1078.001 — Valid Accounts: Default Accounts
+
+## 🧪 Atomic Red Team Simulation by Me
+
+This test is part of my personal SOC detection engineering and investigation workflow.  
+I’m manually simulating a **default account abuse scenario** on an **Azure VM**, writing the detection logic in **Microsoft Sentinel**, and confirming end-to-end incident response capability.
+
+---
+
+## 🎯 Objective
+
+- Simulate abuse of the default `Guest` account to gain local admin + RDP access.
+- Trigger a custom detection rule in Microsoft Sentinel.
+- Confirm an incident is created.
+- Begin triage and investigation like a real SOC analyst.
+
+---
+
+## 🧰 Tools & Lab Environment
+
+| Tool / Platform              | Purpose                                       |
+|-----------------------------|-----------------------------------------------|
+| **Microsoft Sentinel**      | Detection rules + Incident management         |
+| **Log Analytics Workspace** | Ingests Windows logs from VM                  |
+| **Microsoft Defender for Endpoint** | Endpoint telemetry (optional, enabled if onboarded) |
+| **Azure Virtual Machine**   | Victim host for test (Windows OS)             |
+| **PowerShell / CMD**        | Manual execution of Atomic test               |
+| **Event Viewer**            | Local log validation                          |
+| **KQL (Kusto Query Language)** | Custom query logic for Sentinel analytics rules |
+
+> 🧪 The test is run **manually** in a Cyber Range VM I fully control.
+
+---
+
+## ⚙️ Atomic Test Details
+
+### ✅ Test 1 — Enable Guest + RDP + Admin
+
+- **Technique:** T1078.001  
+- **Platform:** Windows  
+- **Atomic GUID:** `99747561-ed8d-47f2-9c91-1e5fde1ed6e0`
+
+#### Manual Execution:
+```cmd
+net user guest /active:yes
+net user guest Password123!
+net localgroup Administrators guest /add
+net localgroup "Remote Desktop Users" guest /add
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 1 /f
+````
+
+---
+
+### ✅ Test 2 — Activate Guest Only
+
+* **Atomic GUID:** `aa6cb8c4-b582-4f8e-b677-37733914abda`
+
+```cmd
+net user guest /active:yes
+```
+
+---
+
+## 🧼 Cleanup
+
+```cmd
+net user guest /active:no
+net localgroup Administrators guest /delete
+net localgroup "Remote Desktop Users" guest /delete
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /f
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /f
+```
+
+---
+
+## 🧠 My Detection Workflow
+
+1. Create a **custom Sentinel rule** using KQL to detect:
+
+   * Guest account activation (Event ID 4722)
+   * Group membership change (Event ID 4732)
+   * Registry changes related to RDP
+2. Run the test manually on the victim VM.
+3. Monitor Sentinel → confirm **incident is created**.
+4. Investigate the alert using full SOC workflow.
+
+---
+
+## 🕵️ SOC Investigation Flow
+
+* Review entities: host, user, account, IP
+* Check `SecurityEvent` logs in Sentinel
+* Look for Defender alerts or RDP telemetry
+* Validate Guest was added to `Administrators`
+* Look for any follow-up attacker actions
+* Document findings
+
+---
+
+## 📍 Forensic Artifacts
+
+| Artifact Type        | Expected Evidence                            |
+| -------------------- | -------------------------------------------- |
+| Windows Events       | 4722 (enabled account), 4732 (group change)  |
+| Registry             | RDP keys modified (AllowTSConnections, etc.) |
+| Network Traffic      | Port 3389 activity (if RDP attempted)        |
+| Process/Command Logs | `net user`, `net localgroup`, `reg add`      |
+
+---
+
+## ✅ Outcome Checklist
+
+* [ ] Sentinel rule created
+* [ ] Atomic test run on Azure VM
+* [ ] Incident successfully triggered
+* [ ] Investigation completed
+* [ ] VM cleaned up or reverted
+
+---
+
+## 📚 References
+
+* [MITRE ATT&CK - T1078.001](https://attack.mitre.org/techniques/T1078/001/)
+* [Atomic Red Team - GitHub](https://github.com/redcanaryco/atomic-red-team)
+* Microsoft Sentinel & Defender Documentation
+
+---
