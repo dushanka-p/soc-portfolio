@@ -94,12 +94,26 @@
 
 ## 📸 Screenshots / Evidence
 
-![Sentinel alert](./artifacts/screenshots/sentinel-alert.png)
-![Guest enabled](./artifacts/screenshots/guest-enabled.png)
-![Group membership change](./artifacts/screenshots/group-add.png)
-![Registry change](./artifacts/screenshots/rdp-registry.png)
+![Sentinel alert for default account abuse detected](./artifacts/screenshots/sentinel-alert.png)
+*Sentinel alert for default account abuse detected (DP_IR_Default_Accounts_Creation).*
+
+![Guest enabled via net.exe](./artifacts/screenshots/net-enable-guest.png)
+*Process event: `net.exe` enables guest account (initiated by `cmd.exe`).*
+
+![Guest enabled via net1.exe](./artifacts/screenshots/net1-enable-guest.png)
+*Process event: `net1.exe` enables guest account (initiated by `net.exe`).*
+
+![Guest added to Administrators group](./artifacts/screenshots/group-add-admin.png)
+*Guest account added to Administrators group via `net localgroup`.*
+
+![Guest added to Remote Desktop Users group](./artifacts/screenshots/group-add-rdp.png)
+*Guest account added to Remote Desktop Users group via `net localgroup`.*
+
+![Registry change to enable RDP](./artifacts/screenshots/rdp-registry.png)
+*Registry key modified to enable RDP (`fDenyTSConnections` set to 0).*
 
 [Download exported logs](./artifacts/exported-logs.csv)
+
 
 
 
