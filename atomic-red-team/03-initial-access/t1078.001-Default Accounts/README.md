@@ -5,7 +5,6 @@
 - **Technique:** T1078.001 — Valid Accounts: Default Accounts  
 - **Link:** [MITRE ATT&CK T1078.001](https://attack.mitre.org/techniques/T1078/001/)
 
----
 ## 🧪 Atomic Red Team Simulation by Me
 
 This test is part of my personal SOC detection engineering and investigation workflow.
@@ -20,7 +19,7 @@ I’m manually simulating a **default account abuse scenario** on an **Azure VM*
 
 ## 📑 Quick Links
 
-* [SOC Investigation Log & Timeline](#soc-investigation-log)
+* [SOC Investigation Log & Timeline](./soc-investigation-log.md)
 
 ---
 
@@ -149,6 +148,6 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSCon
 
 ## Detailed Investigation Log & Timeline
 
-> *See [investigation.md](./investigation.md) in this folder for the full analyst log, timeline, artifacts, screenshots, and triage details for this test.*
+> *See [investigation.md](./soc-investigation-log.md) in this folder for the full analyst log, timeline, artifacts, screenshots, and triage details for this test.*
 
 ---
