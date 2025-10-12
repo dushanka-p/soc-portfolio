@@ -1,7 +1,3 @@
-Here’s your **cleaned-up, up-to-date version** — rewritten to reflect your current work (Atomic Red Team simulations, Microsoft stack, Azure lab) while keeping the layout professional, recruiter-friendly, and Markdown-ready 👇
-
----
-
 # 🧩 SOC Portfolio
 
 Central index for my **Security Operations** projects — focused on **threat simulation, detection engineering, and investigation workflows** using the Microsoft Security stack.
@@ -64,5 +60,3 @@ soc-portfolio/                   <- main index repo
 * Each sub-repo includes a dedicated `SECURITY.md` for responsible disclosure and safe testing guidelines.
 
 ---
-
-Would you like me to include a small **“Current Focus”** section at the top (e.g., “Currently expanding Atomic Red Team detections and Sentinel KQL rules”) so it looks active to recruiters viewing your GitHub?
