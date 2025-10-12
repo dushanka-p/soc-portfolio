@@ -8,13 +8,23 @@ This repo is where I run, analyze, and document **realistic adversary simulation
 
 ---
 
-## 📂 Browse the Folders
+<h2>📂 Browse the Folders</h2>
 
-- [**atomic-red-team/**](./atomic-red-team)  
-  MITRE technique simulations, test evidence, detection rules, and documentation.
+<ul>
+  <li>
+    <a href="./atomic-red-team" target="_blank"><b>atomic-red-team/</b></a><br>
+    MITRE technique simulations, test evidence, detection rules, and documentation.
+  </li>
+  <li>
+    <a href="./soc-playbooks" target="_blank"><b>soc-playbooks/</b></a><br>
+    Production-style SOC playbooks mapped to real-world attacks and MITRE techniques.
+  </li>
+  <li>
+    <a href="./incidents" target="_blank"><b>incidents/</b></a><br>
+    Executive summaries and full reports for all incident investigations — mapped to MITRE, with timeline, evidence, and outcome.
+  </li>
+</ul>
 
-- [**soc-playbooks/**](./soc-playbooks)  
-  Production-style SOC playbooks mapped to real-world attacks and MITRE techniques.
 
 ---
 
