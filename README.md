@@ -1,44 +1,68 @@
-# soc-portfolio
-
-One-page index for my Security Operations work: simulations, detections, and honeypot investigations.  
-Tools used: **Azure VMs, Microsoft Defender, Microsoft Sentinel, GitHub**.
+Here’s your **cleaned-up, up-to-date version** — rewritten to reflect your current work (Atomic Red Team simulations, Microsoft stack, Azure lab) while keeping the layout professional, recruiter-friendly, and Markdown-ready 👇
 
 ---
 
-## 📂 Projects (short index)
-- **Simulations**
-  - `soc-phish-sim` — Phish → PowerShell stager → persistence → beacon → mock exfil (Azure VM victim).  
-- **Honeypot & Investigations**
-  - `honeypot-investigations` — Honeypot telemetry, triage guides, IoC extraction, timeline reports.  
+# 🧩 SOC Portfolio
+
+Central index for my **Security Operations** projects — focused on **threat simulation, detection engineering, and investigation workflows** using the Microsoft Security stack.
+Tools used: **Microsoft Sentinel, Defender for Endpoint, Log Analytics, Azure VMs, and GitHub.**
 
 ---
 
-## 📂 Repository Structure (Wireframe)
+## 📂 Project Index
+
+* **Atomic Red Team Simulations**
+
+  * `atomic-red-team/` — MITRE-mapped tests manually executed on Azure lab VMs to generate Defender + Sentinel telemetry for SOC investigations.
+
+* **SOC Playbooks & Detection Rules**
+
+  * `soc-playbooks-portfolio/` — Sentinel KQL detections, incident workflows, and investigation timelines mapped to ATT&CK.
+
+* **(Planned)** Honeypot & Live Investigations
+
+  * `honeypot-investigations/` — Future addition for analyzing attacker telemetry and IoC extraction from live honeypot data.
+
+---
+
+## 🧱 Repository Structure (Wireframe)
 
 ```
-soc-portfolio/                <- umbrella (index repo)
-├─ simulations/               <- all benign SOC simulations
-│  └─ soc-phish-sim/          <- phishing → stager → beacon → mock exfil (Azure VM + Defender + Sentinel)
+soc-portfolio/                   <- main index repo
+├─ atomic-red-team/              <- simulation tests (MITRE ATT&CK aligned)
 │
-└─ honeypot-investigations/   <- honeypot logs, IoC extraction, triage + investigation reports
+├─ soc-playbooks-portfolio/      <- detections, playbooks, incident workflows
+│
+└─ honeypot-investigations/      <- (planned) honeypot telemetry + analysis reports
 ```
----
-
-## 🔒 Visibility & where to find artifacts
-- **Public:** playbooks, detection rules, sanitized evidence, demo videos.  
-- **Private:** raw PCAPs, full memory dumps, unredacted logs, tenant secrets (stored in private repos or private folder).  
-- **Sanitization:** use `scripts/collect_artifacts.*` to redact hostnames, IPs, and usernames before publishing.
 
 ---
 
-## 📋 For recruiters / reviewers (what to expect)
-- Demo-ready repos with: short TL;DR, one-click run instructions (lab-only), detection queries, and sanitized timelines.  
-- Live honeypot repo: real telemetry + repeatable triage steps demonstrating detection → investigation → remediation.
+## 🔒 Visibility & Artifacts
+
+* **Public:** sanitized playbooks, detection queries, evidence snippets, and demo summaries.
+* **Private:** raw PCAPs, memory dumps, tenant data, and logs stored securely offline.
+* **Sanitization:** all published artifacts are redacted with custom PowerShell redaction scripts (`collect_artifacts.ps1`).
 
 ---
 
-## 🛡 Safety & ethics (must-read)
-- All simulations use **benign scripts only** and are to be run in isolated lab VMs.  
-- Raw sensitive artifacts are never public. See each repo's `SECURITY.md` for details.
+## 📋 For Recruiters & Reviewers
+
+* Each repo includes:
+
+  * A **TL;DR summary** of the attack or detection.
+  * **Step-by-step lab instructions** (safe, lab-only).
+  * **Detection queries** and **incident timeline** evidence.
+* Demonstrates proficiency in **SOC workflows**, **KQL detection logic**, and **Microsoft Defender telemetry analysis.**
 
 ---
+
+## 🛡 Ethics & Safety
+
+* All simulations are **benign and lab-safe**, executed in isolated Azure VMs.
+* No sensitive or real-world data is exposed.
+* Each sub-repo includes a dedicated `SECURITY.md` for responsible disclosure and safe testing guidelines.
+
+---
+
+Would you like me to include a small **“Current Focus”** section at the top (e.g., “Currently expanding Atomic Red Team detections and Sentinel KQL rules”) so it looks active to recruiters viewing your GitHub?
