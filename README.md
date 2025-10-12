@@ -3,27 +3,23 @@
 Welcome to my SOC Portfolio!  
 This repo is where I run, analyze, and document **realistic adversary simulations, blue team playbooks, detection rules, and incident workflows** — all mapped to [MITRE ATT&CK](https://attack.mitre.org/).
 
+---
+
 > ⚠️ **Work in Progress:**  
 > This lab is always evolving as I build, test, and refine new simulations and detections. Some folders may be incomplete as I focus on depth and quality. Check back for regular updates!
 
 ---
 
-<h2>📂 Browse the Folders</h2>
+## 📂 Browse the Folders
 
-<ul>
-  <li>
-    <a href="./atomic-red-team" target="_blank"><b>atomic-red-team/</b></a><br>
-    MITRE technique simulations, test evidence, detection rules, and documentation.
-  </li>
-  <li>
-    <a href="./soc-playbooks" target="_blank"><b>soc-playbooks/</b></a><br>
-    Production-style SOC playbooks mapped to real-world attacks and MITRE techniques.
-  </li>
-  <li>
-    <a href="./incidents" target="_blank"><b>incidents/</b></a><br>
-    Executive summaries and full reports for all incident investigations — mapped to MITRE, with timeline, evidence, and outcome.
-  </li>
-</ul>
+- [**atomic-red-team/**](./atomic-red-team)  
+  MITRE technique simulations, test evidence, detection rules, and documentation.
+
+- [**soc-playbooks/**](./soc-playbooks)  
+  Production-style SOC playbooks mapped to real-world attacks and MITRE techniques.
+
+- [**incidents/**](./incidents)  
+  Executive summaries and full reports for all incident investigations — mapped to MITRE, with timeline, evidence, and outcome.
 
 
 ---
@@ -107,11 +103,5 @@ This ensures my learning, workflow, and documentation are always relevant to rea
 
 * [GitHub](https://github.com/dushanka-p)
 * [LinkedIn](https://www.linkedin.com/in/dushanka-p/)
-* [Email](mailto:dushanka.cybersec@gmail.com)
-
----
-
-> “Practice doesn’t make perfect — it makes progress.
-> Blue team isn’t just a job, it’s a discipline.”
 
 ---
