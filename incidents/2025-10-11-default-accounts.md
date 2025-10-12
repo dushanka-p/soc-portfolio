@@ -95,31 +95,57 @@
 ## 📸 Screenshots / Evidence
 
 **Sentinel alert for default account abuse detected**  
-![Sentinel alert for default account abuse detected](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/sentinel-alert.png)
+![Sentinel alert for default account abuse detected](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/sentinel-alert.png)
+*Sentinel alert for default account abuse detected (DP_IR_Default_Accounts_Creation).*
+
+---
 
 **Guest enabled via net.exe**  
-![Guest enabled via net.exe](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/net-enable-guest.png)
+![Guest enabled via net.exe](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/net-enable-guest.png)
+*Process event: `net.exe` enables guest account (initiated by `cmd.exe`).*
+
+---
 
 **Guest enabled via net1.exe**  
-![Guest enabled via net1.exe](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/net1-enable-guest.png)
+![Guest enabled via net1.exe](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/net1-enable-guest.png)
+*Process event: `net1.exe` enables guest account (initiated by `net.exe`).*
+
+---
 
 **Guest added to Administrators group via net.exe**  
-![Guest added to Administrators group via net.exe](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/group-add-admin-net.png)
+![Guest added to Administrators group via net.exe](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/group-add-admin-net.png)
+*Guest account added to Administrators group via `net.exe` (initiated by `cmd.exe`).*
+
+---
 
 **Guest added to Administrators group via net1.exe**  
-![Guest added to Administrators group via net1.exe](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/group-add-admin-net1.png)
+![Guest added to Administrators group via net1.exe](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/group-add-admin-net1.png)
+*Guest account added to Administrators group via `net1.exe` (initiated by `net.exe`).*
+
+---
 
 **Guest added to Remote Desktop Users group via net.exe**  
-![Guest added to Remote Desktop Users group via net.exe](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/group-add-rdp-net.png)
+![Guest added to Remote Desktop Users group via net.exe](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/group-add-rdp-net.png)
+*Guest account added to Remote Desktop Users group via `net.exe`.*
+
+---
 
 **Guest added to Remote Desktop Users group via net1.exe**  
-![Guest added to Remote Desktop Users group via net1.exe](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/group-add-rdp-net1.png)
+![Guest added to Remote Desktop Users group via net1.exe](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/group-add-rdp-net1.png)
+*Guest account added to Remote Desktop Users group via `net1.exe`.*
+
+---
 
 **Registry change: AllowTSConnections**  
-![Registry change: AllowTSConnections](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/rdp-registry-allowts.png)
+![Registry change: AllowTSConnections](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/rdp-registry-allowts.png)
+*Registry key `AllowTSConnections` set to `1` to enable RDP.*
+
+---
 
 **Registry change: fDenyTSConnections**  
-![Registry change: fDenyTSConnections](../atomic-red-team/03-initial-access/t1078.001-Default Accounts/artifacts/screenshots/rdp-registry-fdenyts.png)
+![Registry change: fDenyTSConnections](../atomic-red-team/03-initial-access/t1078.001-default-accounts/artifacts/screenshots/rdp-registry-fdenyts.png)
+*Registry key `fDenyTSConnections` set to `0` to enable RDP.*
+
 
 ---
 
