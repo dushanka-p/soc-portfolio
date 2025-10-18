@@ -1,3 +1,5 @@
+
+```
 soc-alert-investigations/
 │
 ├─ README.md
@@ -82,4 +84,5 @@ soc-alert-investigations/
     ├─ investigation-notes-template.md
     ├─ final-report-template.md
     └─ evidence-log-template.md
+```
 
