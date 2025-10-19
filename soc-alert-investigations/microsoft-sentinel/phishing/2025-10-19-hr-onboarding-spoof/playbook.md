@@ -47,7 +47,8 @@ Inbound email with suspicious external link received by user “j[.]garcia[@]the
 
 ## 3. Initial Triage
 
-1. Check for duplicates / false positives  
+1. Check for duplicates / false positives: Screenshot: [email-search-same-subject-alertid-8818.png](evidence/screenshots/email-search-same-subject-alertid-8818.png)  
+Shows both emails with the same subject line found during duplicate check.  
 2. Identify target recipient(s) and role sensitivity  
 3. Quick verdict: benign / suspicious / malicious — with reason  
 4. Decision: escalate or continue analysis  
