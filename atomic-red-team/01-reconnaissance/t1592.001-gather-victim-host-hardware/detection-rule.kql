@@ -2,3 +2,11 @@
 //
 //
 // ------------------------------------------------------------------
+
+DeviceProcessEvents
+| where DeviceName == "dp--art-sim--dp"
+| where FileName =~ "powershell.exe" or FileName =~ "pwsh.exe"
+| where ProcessCommandLine has_any ("Get-CimInstance", "Get-WmiObject", "wmic", "systeminfo", "Get-ComputerInfo", "Select-Object", "Win32_PnPEntity", "Win32_BIOS", "Win32_ComputerSystem", "Win32_BaseBoard", "Win32_DiskDrive")
+| where ProcessCommandLine has_any ("Camera", "Image", "Bios", "Board", "Disk", "Drive", "PnP", "Hardware", "Manufacturer", "Serial", "Model") // Broad hardware info keywords
+| where AccountName !in ("alex.ford", "itopsadmin", "mdmagent") // Exclude known legit admin/service accounts
+| where InitiatingProcessFileName !in ("explorer.exe", "taskschd.exe")
