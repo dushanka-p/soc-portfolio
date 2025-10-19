@@ -1,21 +1,21 @@
-## MITRE Technique ID — <Technique Name>
+# T1595.003 — Active Scanning: Wordlist Scanning
 
 **MITRE ATT&CK Mapping:**  
-- **Tactic:** <Tactic(s)>  
-- **Technique:** <MITRE Technique ID> — <Technique Name>  
-- **Link:** <a href="<MITRE ATT&CK Link>" target="_blank" rel="noopener noreferrer">MITRE ATT&CK <ID> ↗️</a>
+- **Tactic:** Reconnaissance  
+- **Technique:** T1595.003 — Active Scanning: Wordlist Scanning  
+- **Link:** <a href="https://attack.mitre.org/techniques/T1595/003/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK T1595.003 ↗️</a>
 
 ---
 
 ## 🧪 Atomic Red Team Simulation by Me
 
 This test is part of my personal SOC detection engineering and investigation workflow.  
-I’m manually simulating a **<scenario/technique description>** on an **Azure VM**, writing the detection logic in **Microsoft Sentinel**, and confirming end-to-end incident response capability.
+I’m simulating **web server and cloud storage wordlist scanning** on a controlled lab target, developing detection logic in Microsoft Sentinel/Splunk, and confirming detection/investigation procedures.
 
 &nbsp;
 
 > **Safety Notice:**  
-> All testing and simulation is performed strictly within a controlled lab environment (Azure VM in a Cyber Range) that I fully manage. **Never run these techniques on production systems.**
+> All scanning is performed strictly within a lab environment (Cyber Range VM or local sandbox). **Never run these techniques on production or unauthorized systems.**
 
 ---
 
@@ -27,70 +27,71 @@ I’m manually simulating a **<scenario/technique description>** on an **Azure V
 
 ## 🎯 Objective
 
-* Simulate <short summary of the adversary action/abuse scenario>
-* Trigger a custom detection rule in Microsoft Sentinel
-* Confirm an incident is created
-* Begin triage and investigation like a real SOC analyst
+* Simulate adversary-style content and directory enumeration using wordlist scanning tools (Dirb, GoBuster, custom scripts).
+* Trigger a detection rule based on high-volume 404s, scanning patterns, or known scanning tool signatures.
+* Investigate the scan in SIEM and document findings using a full SOC workflow.
 
 ---
 
 ## 🧰 Tools & Lab Environment
 
-| Tool / Platform                     | Purpose                                             |
-| ----------------------------------- | --------------------------------------------------- |
-| **Microsoft Sentinel**              | Detection rules + Incident management               |
-| **Log Analytics Workspace**         | Ingests Windows logs from VM                        |
-| **Microsoft Defender for Endpoint** | Endpoint telemetry (optional, enabled if onboarded) |
-| **Azure Virtual Machine**           | Victim host for test (Windows OS)                   |
-| **PowerShell / CMD**                | Manual execution of Atomic test                     |
-| **Event Viewer**                    | Local log validation                                |
-| **KQL (Kusto Query Language)**      | Custom query logic for Sentinel analytics rules      |
+| Tool / Platform                     | Purpose                                               |
+| ----------------------------------- | ----------------------------------------------------- |
+| **Dirb / DirBuster / GoBuster**     | Directory/content enumeration                          |
+| **Microsoft Sentinel / Splunk**     | Detection rules, incident management                   |
+| **Azure VM / Local VM**             | Victim web server (Windows, Linux, or macOS)           |
+| **KQL/SPL**                         | Custom detection queries                               |
+| **PowerShell / WebServerScan.ps1**  | Atomic Red Team test execution                         |
+| **Wordlists (SecLists, custom)**    | Directories/filenames to scan                          |
+| **Web Server Logs**                 | Artifact review, source for detection                  |
 
-> 🧪 The test is run **manually** in a Cyber Range VM I fully control.
+> 🧪 The test is run **manually** in a Cyber Range VM or sandbox.
 
 ---
 
 ## ⚙️ Atomic Test Details
 
-### ✅ Test 1 — <Test Name/Description>
+### ✅ Test 1 — Web Server Wordlist Scan
 
-* **Technique:** <MITRE Technique ID>
-* **Platform:** <Platform>
-* **Atomic GUID:** `<Atomic GUID>`
+* **Technique:** T1595.003  
+* **Platform:** Windows, Linux, macOS  
+* **Atomic GUID:** `89a83c3e-0b39-4c80-99f5-c2aa084098bd`
 
-#### Manual Execution:
-```cmd
-<commands used in the test>
+#### Manual Execution (PowerShell):
+```powershell
+Import-Module "PathToAtomicsFolder/T1595.003/src/WebServerScan.ps1"
+Invoke-WordlistScan -Target "http://localhost" `
+    -Wordlist "PathToAtomicsFolder/T1595.003/src/wordlist.txt" `
+    -Timeout 5 `
+    -OutputFile "$env:TMPDIR/wordlist_scan.txt"
+Write-Host "Scan complete. Results saved to: $env:TMPDIR/wordlist_scan.txt"
 ````
 
----
-
-### ✅ Test 2 — <Test Name/Description>
-
-* **Atomic GUID:** `<Atomic GUID>`
-
-```cmd
-<commands used in this test>
-```
+*You can replace `"http://localhost"` and wordlist path with your actual test values.*
 
 ---
 
 ## 🧼 Cleanup
 
-```cmd
-<cleanup commands>
+No system changes are made by the scan itself.
+Just remove any generated output files if needed:
+
+```powershell
+Remove-Item "$env:TMPDIR/wordlist_scan.txt"
 ```
 
 ---
 
 ## 🧠 My Detection Workflow
 
-1. Create a **custom Sentinel rule** using KQL to detect:
+1. **Create detection rules** (in Sentinel/Splunk) to identify:
 
-   * <Detection logic points, e.g. event IDs, artifacts>
-2. Run the test manually on the victim VM.
-3. Monitor Sentinel → confirm **incident is created**.
-4. Investigate the alert using full SOC workflow.
+   * High volume of 404/403 errors in a short window from a single source
+   * Known scanning tool user-agents (`Dirb`, `GoBuster`, etc.)
+   * Unusual request patterns or bursts in web server logs
+2. Run the Atomic test or manual scan on the victim VM/web server.
+3. Monitor SIEM for alerts/incidents.
+4. Investigate the activity using a SOC analyst workflow, validate artifacts, and document findings.
 
 ---
 
@@ -98,42 +99,42 @@ I’m manually simulating a **<scenario/technique description>** on an **Azure V
 
 [Jump to Detailed Log & Timeline](./soc-investigation-log.md)
 
-* Review entities: host, user, account, IP
-* Check logs in Sentinel
-* Look for Defender/EDR alerts or other telemetry
-* Validate actions taken in the simulation
-* Look for any follow-up attacker actions
-* Document findings
+* Review source IP, host, and timestamps in server/SIEM logs.
+* Check web server access/error logs for scanning patterns.
+* Look for multiple 404s, directory enumeration attempts.
+* Identify tool signatures (user agent, request pattern).
+* Document findings and lessons learned.
 
 ---
 
 ## 📍 Forensic Artifacts
 
-| Artifact Type        | Expected Evidence                |
-| -------------------- | -------------------------------- |
-| Windows Events       | <Event IDs, e.g. 4722, 4732>     |
-| Registry             | <Keys/values changed>            |
-| Network Traffic      | <e.g., port activity, beaconing> |
-| Process/Command Logs | <cmds or scripts run>            |
+| Artifact Type        | Expected Evidence                               |
+| -------------------- | ----------------------------------------------- |
+| Web Server Logs      | Repeated 404/403s, enumeration requests         |
+| SIEM Detection       | Alert on excessive errors or scanning patterns  |
+| Network Traffic      | Multiple HTTP requests to varied endpoints      |
+| Process/Command Logs | Evidence of scan tool execution on test machine |
 
 ---
 
 ## ✅ Outcome Checklist
 
-1. [ ] Sentinel rule created
-2. [ ] Atomic test run on Azure VM
-3. [ ] Incident successfully triggered
-4. [ ] Investigation completed
-5. [ ] VM cleaned up or reverted
+1. [ ] Detection rule created (Sentinel/Splunk)
+2. [ ] Atomic test or manual scan run on lab web server
+3. [ ] Incident/alert triggered
+4. [ ] Investigation completed, evidence collected
+5. [ ] VM/web server cleaned up
 
 ---
 
 ## 📚 References
 
-* <a href="<MITRE ATT&CK Link>" target="_blank" rel="noopener noreferrer">MITRE ATT&CK - <ID> ↗️</a>
+* <a href="https://attack.mitre.org/techniques/T1595/003/" target="_blank" rel="noopener noreferrer">MITRE ATT&CK - T1595.003 ↗️</a>
 * <a href="https://github.com/redcanaryco/atomic-red-team" target="_blank" rel="noopener noreferrer">Atomic Red Team - GitHub ↗️</a>
-* <a href="https://learn.microsoft.com/en-us/azure/sentinel/" target="_blank" rel="noopener noreferrer">Microsoft Sentinel Documentation ↗️</a>
-* <a href="https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/" target="_blank" rel="noopener noreferrer">Microsoft Defender for Endpoint Documentation ↗️</a>
+* <a href="https://github.com/danielmiessler/SecLists" target="_blank" rel="noopener noreferrer">SecLists Wordlists ↗️</a>
+* <a href="https://www.kali.org/tools/dirb/" target="_blank" rel="noopener noreferrer">Dirb (Kali Linux) ↗️</a>
+* <a href="https://gobuster.github.io/" target="_blank" rel="noopener noreferrer">GoBuster Documentation ↗️</a>
 
 ---
 
