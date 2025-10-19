@@ -1,53 +1,54 @@
-# 📍 Detection Rule Settings — <MITRE Technique/Name>
+# 📍 Detection Rule Settings — T1592.001 Gather Victim Host Information: Hardware
 
 ## 🔖 Rule Summary
 
-| Field                | Value                                      |
-|----------------------|--------------------------------------------|
-| Rule Name            |                                            |
-| MITRE Technique      |                                            |
-| Tactics              |                                            |
-| Rule Type            |                                            |
-| Enabled              | ✅ Yes / ❌ No                              |
-| Severity             |                                            |
-| Query File           | `detection-rule.kql`                       |
-| Frequency            |                                            |
-| Lookup Period        |                                            |
-| Trigger Threshold    |                                            |
-| Incident Creation    | ✅ Enabled / ❌ Disabled                    |
+| Field             | Value                                                |
+| ----------------- | ---------------------------------------------------- |
+| Rule Name         | Host Hardware Recon via PowerShell (MITRE T1592.001) |
+| MITRE Technique   | T1592.001 – Gather Victim Host Information: Hardware |
+| Tactics           | Reconnaissance                                       |
+| Rule Type         | Scheduled Query Rule                                 |
+| Enabled           | ✅ Yes                                                |
+| Severity          | Medium                                               |
+| Query File        | `detection-rule.kql`                                 |
+| Frequency         | Every 5 minutes                                      |
+| Lookup Period     | Last 1 hour                                          |
+| Trigger Threshold | 1                                                    |
+| Incident Creation | ✅ Enabled                                            |
 
 ---
 
 ## 🧠 Entity Mappings
 
-| Sentinel Field    | Mapped Column    |
-|-------------------|------------------|
-| Account           |                  |
-| Host              |                  |
-| Timestamp         |                  |
+| Sentinel Field | Mapped Column |
+| -------------- | ------------- |
+| Account        | AccountName   |
+| Host           | DeviceName    |
+| Timestamp      | Timestamp     |
 
 ---
 
 ## 📦 Grouping Settings
 
-| Setting                 | Value            |
-|-------------------------|------------------|
-| Grouping Enabled        | ✅ Yes / ❌ No    |
-| Group by Entities       |                  |
-| Reopen Closed Incidents | ✅ Yes / ❌ No    |
+| Setting                 | Value         |
+| ----------------------- | ------------- |
+| Grouping Enabled        | ✅ Yes         |
+| Group by Entities       | Account, Host |
+| Reopen Closed Incidents | ✅ Yes         |
 
 ---
 
 ## 🏷️ Tags (optional)
 
-<Tags here: Txxxx, AtomicRedTeam, LabTest, DetectionEngineering, etc.>
+T1592, T1592.001, Reconnaissance, AtomicRedTeam, LabTest, DetectionEngineering
 
 ---
 
 ## 🧪 Notes
 
-- Triggered successfully on lab run dated: `YYYY-MM-DD`
-- Rule tested using Atomic Red Team simulation in <platform/VM/lab>
-- Can be tuned further with exclusions or environment-specific conditions
+* Triggered successfully on lab run dated: `2025-10-19`
+* Rule tested using Atomic Red Team simulation in Azure VM (`dp--art-sim--dp`)
+* Can be tuned further with additional exclusions or environment-specific context
 
 ---
+
