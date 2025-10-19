@@ -7,40 +7,38 @@
 
 ## 1. Alert Summary
 
-1. Alert name / ID: 8818 – Inbound Email Containing Suspicious External Link
-2. Date detected (YYYY-MM-DD HH:MM UTC+0): 2025-10-19 12:33 UTC+0  
-3. SIEM / tool: Microsoft Sentinel  
-4. Severity / priority: Medium  
+1. Alert name / ID: 8818 – 
+2. Date detected (YYYY-MM-DD HH:MM UTC+0):  
+3. SIEM / tool: 
+4. Severity / priority: 
 5. Triage analyst: Dushanka P.  
-6. Related case / ticket ID: Phishing  
+6. Related case / ticket ID:
 7. Short summary of alert:
-Inbound email with suspicious external link received by user “j[.]garcia[@]thetrydaily[.]thm”. The email, titled “Action Required: Finalize Your Onboarding Profile,” was sent from “onboarding[@]hrconnex[.]thm”. No attachments. Email encourages recipient to click a link for profile setup (hxxps://hrconnex[.]thm/onboarding/15400654060/j[.]garcia). Investigation required to determine if the link is malicious and whether endpoints accessed it.
 
 ---
 
 ## 2. Trigger Context (Alert-Only)
 
 - **Alert trigger type:**  
-  Inbound email flagged due to the presence of a suspicious external link.
+ 
 
 - **Observable shown:**  
-  - External URL: `hxxps://hrconnex[.]thm/onboarding/15400654060/j[.]garcia`  
+  - External URL:
   - No attachment  
-  - Sender: `onboarding[@]hrconnex[.]thm`
+  - Sender:
 
 - **SIEM/tool that generated alert:**  
-  TryHackMe SOC Simulator (email alert system)
+  
 
 - **Data included in alert:**  
-  - **Subject:** Action Required: Finalize Your Onboarding Profile  
-  - **Sender:** `onboarding[@]hrconnex[.]thm`  
-  - **Recipient:** `j[.]garcia[@]thetrydaily[.]thm`  
-  - **Timestamp:** 2025-10-19 12:33:25.051 UTC  
-  - **Direction:** Inbound  
-  - **Attachment:** None
+  - **Subject:** 
+  - **Sender:** 
+  - **Recipient:**  
+  - **Timestamp:**  
+  - **Direction:**  
+  - **Attachment:** 
 
 - **Visible telemetry:**  
-  No email header snippet, click trace, or file hash provided in the alert at this stage.
 
 
 ---
