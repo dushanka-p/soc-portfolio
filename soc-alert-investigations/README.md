@@ -80,9 +80,24 @@ soc-alert-investigations/
 │   └─ other/
 │
 └─ templates/
-    ├─ playbook-template.md
-    ├─ investigation-notes-template.md
-    ├─ final-report-template.md
-    └─ evidence-log-template.md
+    ├─ playbook/
+    │   ├─ generic-playbook-template.md
+    │   ├─ phishing-playbook-template.md
+    │   ├─ firewall-playbook-template.md
+    │   ├─ brute-force-playbook-template.md
+    │   ├─ malware-playbook-template.md
+    │   └─ privilege-escalation-playbook-template.md
+    │
+    ├─ investigation-notes/
+    │   ├─ generic-investigation-notes-template.md
+    │   ├─ phishing-investigation-notes-template.md
+    │   ├─ firewall-investigation-notes-template.md
+    │   ├─ brute-force-investigation-notes-template.md
+    │   ├─ malware-investigation-notes-template.md
+    │   └─ privilege-escalation-investigation-notes-template.md
+    │
+    ├─ final-report/
+    │
+    └─ evidence-log/
 ```
 
