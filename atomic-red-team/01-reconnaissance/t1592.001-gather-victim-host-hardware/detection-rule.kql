@@ -1,6 +1,10 @@
 // ------------------------------------------------------------------
-//
-//
+//  Detection: Host Hardware Recon via PowerShell (MITRE T1592.001)
+// - Flags suspicious PowerShell commands used to enumerate hardware info
+// - Catches both Atomic Red Team tests and broader hardware discovery
+// - Generalized for multiple variations (CIM, WMI, WMIC, etc.)
+// - Filters out known admin/service accounts and common benign parent processes
+// - Tune keywords and exclusions to your environment for best results
 // ------------------------------------------------------------------
 
 DeviceProcessEvents
