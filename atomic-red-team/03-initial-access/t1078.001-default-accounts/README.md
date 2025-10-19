@@ -151,7 +151,3 @@ reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSCon
 
 ---
 
-```
-
-Let me know if you need this for any other documentation or want a boilerplate template!
-```
